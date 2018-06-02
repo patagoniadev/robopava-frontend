@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import {TextField} from 'material-ui';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
     textField: {
@@ -41,10 +41,10 @@ class InputTemperature extends Component {
                 type="number"
                 InputLabelProps={{
                     shrink: true,
-                    }}
+                }}
                 margin="normal"
             />
-    );
+        );
     }
 }
 InputTemperature.propTypes = {

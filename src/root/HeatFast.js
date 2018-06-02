@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './css/heatFast.css';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import {Button} from 'material-ui'; 
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import InputTemperature from './InputTemperature';
 
 const styles = theme => ({
@@ -23,20 +23,21 @@ class HeatFast extends Component {
     render() {
     const { classes } = this.props;
     return (
-    <Grid container spacing={16}>
-        <Grid item xs={12}>
-            <div className="heatFast">
-                <h1> RoboPava rápida </h1>
-            </div>
+        <Grid container spacing={16}>
+            <Grid item xs={12}>
+                <div className="heatFast">
+                    <h1> RoboPava rápida </h1>
+                </div>
+            </Grid>
+            <Grid item xs={12}>
+                <InputTemperature value={this.state.temperatura}/>
+                <Button variant="raised" size="medium" color="primary" className={classes.button}>
+                    Calentar
+                </Button>
+                
+            </Grid>
         </Grid>
-        <Grid item xs={12}>
-            <InputTemperature value={this.state.temperatura}/>
-            <Button variant="raised" size="medium" color="primary" className={classes.button}>
-              Calentar
-            </Button>
-        </Grid>
-    </Grid>
-    );
+        );
     }
 }
 HeatFast.propTypes = {
