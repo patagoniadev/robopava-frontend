@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import ButtonCoffe from './ButtonCoffe';
+import ButtonHeat from './ButtonHeat';
+import HeatFast from './HeatFast';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ButtonCoffe/>
+        <HeatFast/>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import InputTemperature from './InputTemperature';
+import ButtonHeat from './ButtonHeat';
 
 const styles = theme => ({
     textField: {
@@ -31,10 +32,8 @@ class HeatFast extends Component {
             </Grid>
             <Grid item xs={12}>
                 <InputTemperature value={this.state.temperatura}/>
-                <Button variant="raised" size="medium" color="primary" className={classes.button}>
-                    Calentar
-                </Button>
-                
+              
+                <ButtonHeat/>
             </Grid>
         </Grid>
         );
