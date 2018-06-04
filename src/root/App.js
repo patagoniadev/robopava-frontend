@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ButtonHeat from './ButtonHeat';
 import HeatFast from './HeatFast';
 
 class App extends Component {
