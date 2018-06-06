@@ -13,6 +13,8 @@ import SendIcon from '@material-ui/icons/Send';
 import TeaButton from './TeaButton';
 import CoffeeButton from './CoffeeButton';
 import MateButton from './MateButton';
+import "./css/boton-calentar.css"
+
 
 const styles = theme => ({
     textField: {
@@ -27,10 +29,7 @@ const styles = theme => ({
         backgroundImage: "url(imagenes/fondo.png)",
         backgroundSize: 'cover',
         overflow: 'hidden',
-    },
-    colorBotonCalentar:{
-        backgroundColor:"#d52a04"
-    },
+    }
   });
   
 class HeatFast extends Component {
@@ -57,7 +56,7 @@ class HeatFast extends Component {
         <Grid container justify="center" align="center" spacing={16}>
             <Grid item xs={12}>
                 <div className="heatFast">
-                    <h1> RoboPava rápida </h1>
+                    <h1> RoboPava </h1>
                 </div>
             </Grid>
             <Grid item xs={4}>              
@@ -69,8 +68,8 @@ class HeatFast extends Component {
             <Grid item xs={4}>
                 <MateButton/>
             </Grid>
-            <Grid item xs={12}>
-                <h3> ...o ingrese una temperatura </h3>
+            <Grid item xs={12} >
+               <div className="espacio"> 
                 <ValidatorForm
                     ref="form"
                     onSubmit={this.handleSubmit}
@@ -96,16 +95,18 @@ class HeatFast extends Component {
                         )
                   }}
                 />
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                     <br/>
                     <Tooltip title="¡Calentar!">
-                        <Button size="medium" className={classes.colorBotonCalentar} variant="fab" >
+                        <Button size="medium" className="boton-calentar" variant="fab" >
                             <i class="fab fa-hotjar fa-lg"></i>
                         </Button> 
                     </Tooltip>
                 </Grid>
                 </ValidatorForm>
+                </div>
             </Grid>
+          
         </Grid>
         );
     }

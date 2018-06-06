@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
+import "./css/boton-infusion.css";
 
 const styles = {
   button: {
@@ -22,6 +23,7 @@ function MateButton(props) {
         size="medium"
         variant="raised"
         style={styles.button}
+        className="boton-infusion" 
       >
         <img style={styles.icono} src="imagenes/mate.svg"/>
       </Button> 

@@ -1,0 +1,11 @@
+.boton-calentar{
+    background-color:  #81d4fa !important;
+}
+.boton-calentar:hover{
+    background-color: #43a047  !important;
+    transition: background-color 0.5s !important;
+}
+.espacio{
+    position: relative !important;
+    top: 75% !important;
+}

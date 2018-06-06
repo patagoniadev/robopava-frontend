@@ -1,0 +1,14 @@
+.boton-infusion{
+    height: 105% !important;
+    width: 40% !important;
+    border-radius: 30px !important;
+    background-color: #81d4fa !important;
+}
+.boton-infusion:hover{
+    height: 105% !important;
+    width: 40% !important;
+    border-radius: 30px !important;
+    background-color: #43a047  !important;
+    transition: background-color 0.5s !important;
+}
+
