@@ -8,39 +8,43 @@ import "./css/boton-infusion.css"
 
 const styles = {
   button: {
-    // margin:,
     height:"105%",
     width:"40%",
     borderRadius:30,
     backgroundColor:"#d52a04"
-    // padding:50,
   },
-  // icono:{
-  //   marginLeft:"15%",
-  //   padding:"10%" ,
-  // }
-
 };
 
-function TeaButton(props) {
-  // const { classes } = props;
+class TeaButton extends Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp:"100"
+    }
+    this.handleTemperatura = this.handleTemperatura.bind(this)
+  }
+
+  handleTemperatura(){
+    this.props.temperatura(this.state.temp)
+  }
+
+ render(){
   return (
-    // <div>
       <Button 
         size="medium"
         variant="raised"
         color="primary"
         style={styles.button}
         className="boton-infusion"
+        onClick = {()=> this.handleTemperatura() }
       >
         <img style={styles.icono} src="imagenes/tea.svg"/>
       </Button> 
-    // </div>
-  );
-}
+    );
+  }
+ }
 
-// TeaButton.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default TeaButton;

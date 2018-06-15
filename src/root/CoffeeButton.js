@@ -15,16 +15,32 @@ const styles = {
 
 };
 
-function CoffeeButton(props) {
-  return (
-      <Button 
-        size="medium"
-        variant="raised"
-        className="boton-infusion" 
-      >
-        <img style={styles.icono} src="imagenes/coffee.svg"/>
-      </Button> 
-  );
+class CoffeeButton extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp:"75"
+    }
+    this.handleTemperatura = this.handleTemperatura.bind(this)
+  }
+
+  handleTemperatura(){
+    this.props.temperatura(this.state.temp)
+  }
+
+  render(){
+    return (
+        <Button 
+          size="medium"
+          variant="raised"
+          className="boton-infusion"
+          onClick = {()=> this.handleTemperatura() }
+        >
+          <img style={styles.icono} src="imagenes/coffee.svg"/>
+        </Button> 
+    );
+  };
 }
 
 

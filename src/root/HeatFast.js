@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import './css/heatFast.css';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Grid from '@material-ui/core/Grid';
@@ -32,15 +33,61 @@ const styles = theme => ({
     }
   });
   
-class HeatFast extends Component {
 
+
+class HeatFast extends Component {
     constructor(props){
         super(props);
         this.state={
-            temperatura:""
+            tempPersonalizada:"0",
+            tempPredefinida:"0"
         }
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);            
+        this.enviarTempPersonalizada = this.enviarTempPersonalizada.bind(this);
+        this.enviarTempPredefinida = this.enviarTempPredefinida.bind(this);
+        this.handleTempBoton=this.handleTempBoton.bind(this);
+        this.enviar = this.enviar.bind(this);
     }
+
+
+    enviar(data){
+        return new Promise(function(resolve,reject){
+            axios.post("http://10.15.4.82/calentar",
+            data
+            )
+            .then(function(response){
+                resolve(response.data);
+            }).catch(()=>{
+                console.log("inaccesible")
+            });
+        })  
+    }
+
+    enviarTempPersonalizada(){
+        let data = JSON.stringify({
+            temperatura:this.state.tempPersonalizada
+        })
+        this.enviar(data);
+    }
+
+    enviarTempPredefinida(temp){
+        let data = JSON.stringify({
+            temperatura:temp
+        })
+        this.enviar(data);
+    }
+
+    handleTempBoton(temp) {
+        console.log(temp);
+        this.setState(
+            {
+                tempPredefinida:temp
+            }
+        )
+        this.enviarTempPredefinida(temp);
+    }
+
+    
 
     handleChange = name => event => {
         this.setState({
@@ -60,32 +107,32 @@ class HeatFast extends Component {
                 </div>
             </Grid>
             <Grid item xs={4}>              
-                <TeaButton/>
+                <TeaButton temperatura={ (temp) => this.handleTempBoton(temp) }/>
             </Grid>
             <Grid item xs={4}>
-                <CoffeeButton/>
+                <CoffeeButton temperatura={ (temp) => this.handleTempBoton(temp) }/>
             </Grid>
             <Grid item xs={4}>
-                <MateButton/>
+                <MateButton temperatura={ (temp) => this.handleTempBoton(temp) }/>
             </Grid>
             <Grid item xs={12} >
                <div className="espacio"> 
                 <ValidatorForm
                     ref="form"
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.enviarTempPersonalizada}
                 >
                 <TextValidator
                     label="Temperatura"
-                    onChange={this.handleChange('temperatura')}
-                    name="temperatura"
-                    value={this.state.temperatura}
+                    onChange={this.handleChange('tempPersonalizada')}
+                    name="tempPersonalizada"
+                    value={this.state.tempPersonalizada}
                     className={classes.inputTemp}
                     validators={['required','minNumber:50','maxNumber:100', 'matchRegexp:^[0-9]{1,3}$']}
                     errorMessages={['El campo es obligatorio','La temperatura mínima es 50°C','La temperatura máxima es 100°C']}
                     InputProps={{
                         startAdornment:(
                             <InputAdornment position="start">
-                                <i class="fas fa-thermometer-quarter"></i>
+                                <i className="fas fa-thermometer-quarter"></i>
                             </InputAdornment>
                         ),
                         endAdornment: (
@@ -98,8 +145,13 @@ class HeatFast extends Component {
                 <Grid item xs={12} >
                     <br/>
                     <Tooltip title="¡Calentar!">
-                        <Button size="medium" className="boton-calentar" variant="fab" >
-                            <i class="fab fa-hotjar fa-lg"></i>
+                        <Button 
+                            size="medium"
+                            className="boton-calentar"
+                            type="submit"
+                            variant="fab"
+                        >
+                            <i className="fab fa-hotjar fa-lg"></i>
                         </Button> 
                     </Tooltip>
                 </Grid>

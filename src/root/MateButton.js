@@ -17,19 +17,33 @@ const styles = {
 
 };
 
-function MateButton(props) {
-  return (
-      <Button 
-        size="medium"
-        variant="raised"
-        style={styles.button}
-        className="boton-infusion" 
-      >
-        <img style={styles.icono} src="imagenes/mate.svg"/>
-      </Button> 
-  );
+class MateButton extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp:"75"
+    }
+    this.handleTemperatura = this.handleTemperatura.bind(this)
+  }
+
+  handleTemperatura(){
+    this.props.temperatura(this.state.temp)
+  }
+
+  render(){
+    return (
+        <Button 
+          size="medium"
+          variant="raised"
+          style={styles.button}
+          className="boton-infusion"
+          onClick = {()=> this.handleTemperatura() }
+        >
+          <img style={styles.icono} src="imagenes/mate.svg"/>
+        </Button> 
+    );
+  }
 }
-
-
 
 export default MateButton;
