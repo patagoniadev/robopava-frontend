@@ -51,29 +51,32 @@ class HeatFast extends Component {
 
 
     enviar(data){
-        return new Promise(function(resolve,reject){
-            axios.post("http://10.15.4.82/calentar",
-            data
-            )
-            .then(function(response){
-                resolve(response.data);
-            }).catch(()=>{
-                console.log("inaccesible")
-            });
-        })  
+        axios({
+        method: 'POST',
+        url:"http://192.168.43.51/v1/pavas/calentar",
+        data: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        })
+        .then(function(response){
+            console.log(response);
+        }).catch(()=>{
+            console.log("inaccesible")
+        });
     }
 
     enviarTempPersonalizada(){
-        let data = JSON.stringify({
+        let data = {
             temperatura:this.state.tempPersonalizada
-        })
+        }
         this.enviar(data);
     }
 
     enviarTempPredefinida(temp){
-        let data = JSON.stringify({
+        let data = {
             temperatura:temp
-        })
+        }
         this.enviar(data);
     }
 
